@@ -1,0 +1,1336 @@
+ /* General styling */
+ * {
+  box-sizing: border-box;
+  color: white;
+  font-style: normal;
+} 
+
+em {
+  font-style: italic;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  height: 100%;
+  position: relative;
+  min-height: 850px;
+}
+
+/* Styling for whole app, mainly background */
+#main-container {
+  overflow: hidden;
+  margin-bottom: 200px;
+  position: relative;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+  min-height: 100vh;
+  min-width: 100vw;
+  /* background-image: url("./imgInSrc/pattern2.jpg"); */
+  background-color: #eaf3f9;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  margin-bottom: 160px;
+}
+
+ #main-container:before {
+  /* content: ''; */
+  /* background-image: url("./imgInSrc/pattern2_low.jpg"); */
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  position: absolute;
+  margin: -30px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  filter: blur(7px);
+} 
+
+#left-and-dashboard {
+  min-height: 100vh;
+  background-color: #1c3f55;
+}
+
+#left-and-dashboard.preloading, .footer.preloading {
+  visibility: hidden;
+}
+
+body.preloading {
+  overflow: hidden;
+}
+
+.warning {
+  color: firebrick;
+  font-size: 14pt;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.success {
+  color: limegreen;
+  font-size: 14pt;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* Site Preloaders */
+.loading-spinner > div {
+  margin: auto;
+}
+
+.lds-roller {
+  display: inline-block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  top: 45%;
+  left: 45%;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 32px 32px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1c3f55;
+  margin: -3px 0 0 -3px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 50px;
+  left: 50px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 54px;
+  left: 45px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 57px;
+  left: 39px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 58px;
+  left: 32px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 57px;
+  left: 25px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 54px;
+  left: 19px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 50px;
+  left: 14px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 45px;
+  left: 10px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* General Styling */
+h1 {
+  /*font-family: "Playfair Display";*/
+  font-size: 22pt;
+  margin-top: 0;
+  margin-bottom: 13px;
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 0px;
+  color: white;
+  font-size: 16pt;
+}
+
+p {
+  margin: 0;
+  font-size: 12pt;
+}
+
+a {
+  text-decoration: none;
+}
+
+.action-btn {
+  background: transparent;
+  border: solid 1px white;
+  padding: 5px;
+  width: 400px;
+  max-width: 100%;
+  height: 50px;
+  font-size: 14pt;
+  margin: 30px 0px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.action-btn:hover {
+  background: rgba(255, 253, 247, 0.6);
+  cursor: pointer;
+}
+
+button:active, button:focus {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.request-btn {
+  margin-top: 90px;
+}
+
+section {
+  padding: 0px;
+}
+
+.avatar {
+  width: 20px;
+}
+
+#signup {
+  width: 400px;
+  margin:auto;
+  margin-top: 40px;
+  height: 550px;
+  padding: 15px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 95%;
+  min-width: 300px;
+}
+
+.form-role-group {
+  margin-top: 20px;
+}
+
+.form-btn-group {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+}
+
+.signup-btn, .signin-btn {
+  flex-basis:50%;
+  margin: 0px 5px;
+}
+
+/* Styling for first module */
+#cover-section {
+  height: auto;
+  color: white;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 100%;
+  flex-grow: 0;
+  padding-top: 40px;
+}
+
+#cover-section > div {
+  padding: 20px;
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#profile-container {
+  border: 2px solid white;
+  border-radius:60px;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+}
+
+#cover-section img {
+  height: 100%;
+}
+
+#profile-and-text {
+  flex-direction: column;
+  justify-content: center;
+}
+
+#cover-section h4 {
+  font-size: 14pt;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+#profile-text {
+  text-align: center;
+  margin-top: 15px;
+}
+
+#pay-buttons {
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0px !important;
+  margin-top: 30px;
+  width: 100%;
+}
+
+
+#pay-buttons button {
+  border: solid 1px white;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  height: 75px;
+  width: 300px;
+  font-size: 22pt;
+}
+
+#pay-buttons button:first-of-type {
+  margin-right: 10px;
+}
+
+#pay-buttons button:hover {
+  background-color: rgba(255, 253, 247, 0.6);
+  cursor: pointer;
+}
+
+main *, #left-nav * {
+  z-index: 1;
+}
+
+/* Styling for dashboard modules/"widgets" */
+.main-sections {
+  border-top: solid 1px white;
+  background-color: #1c3f55;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.main-sections:not(#cover-section) {
+  padding-top: 10px;
+}
+
+/* Styling for left nav bar */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*background-color: #272727;*/
+  color: white;
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.nav-container * {
+  z-index: 1;
+}
+
+.nav-container img {
+  width: 30px;
+  z-index: 120;
+}
+
+.nav-container h1 {
+  /*text-align: center;*/
+  margin: 15px;
+  font-size: 20pt;
+}
+
+.nav-container a {
+  text-align: center;
+}
+
+#left-nav {
+  display: none;
+  position: fixed;
+  z-index:auto;
+  width: 100%;
+}
+
+#left-nav:before {
+  margin: 0;
+}
+
+.left-block {
+  float: left;
+  height: 100%;
+  width: 2px;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.nav-section img {
+  height: 30px;
+}
+
+.nav-section {
+  padding: 0px 10px 0px 0px;
+  height: 70px;
+  /*border-top: 1px solid white;*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: linear-gradient(to left, transparent 50%, rgba(255, 253, 247, 0.6) 50%);
+  background-size: 200% 100%;
+  background-position:right bottom;
+  transition:all 0.4s ease;
+}
+
+.nav-section:hover:not(.housely) {
+  background-position: left bottom;
+}
+
+.current-section, .about {
+  background: linear-gradient(to left, rgba(255, 253, 247, 0.6) 50%, rgba(255, 253, 247, 0.6) 50%);
+  background-size: 200% 100%;
+  background-position:right bottom;
+}
+
+.nav-section:hover:not(.housely) > h2 {
+  color: white;
+}
+
+.housely {
+  cursor: default !important;
+  padding-left: 15px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.housely img {
+  height: 40px;
+}
+
+.housely h2 {
+  font-size: 24pt;
+}
+
+.sign-out h2 {
+  /* color: rgb(255, 99, 132); */
+}
+
+.nav-section h2 {
+  flex-basis: 80%;
+  transition: color 0.3s;
+}
+
+.home-section {
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
+/* Styling for each widget header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  /*background-color: #2D6F99;*/
+  /* padding-bottom: 10px; */
+  height: 40px;
+  align-items: flex-start;
+  /*opacity: 0.9;*/
+  /*box-shadow: 0 4px 4px -2px black;*/
+}
+
+
+table {
+  margin-left: -5px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  width: 100%;
+}
+
+td {
+  padding: 5px;
+}
+
+/* Styling for "plus" icons */
+.icon {
+  height: 35px;
+  margin-top: -5px;
+}
+
+.icon:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.todo-plus.editing, .cal-plus.editing {
+  opacity: 0.6;
+}
+
+.todo-plus.editing:hover, .cal-plus.editing:hover {
+  cursor: default !important;
+}
+
+.col1 {
+  width: 110px;
+  font-weight: 700;
+}
+
+/* Styling for List */
+#maintenance, #collected-payments, #chores {
+  flex-basis: 100%; 
+  padding-left: 20px;
+}
+
+#request .section-header {
+  margin-bottom: 40px;
+}
+
+.list-container {
+}
+
+.list-header, .list-item-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-item-container p, .list-header h3 {
+  flex-basis: 20%;
+  text-align: left;
+}
+
+#request-container input,.Dropdown-root {
+  margin-top: 10px;
+}
+
+.Dropdown-control * {
+  color: black;
+}
+
+.list-item-container {
+  margin-bottom: 15px;
+}
+
+.list-item-container p {
+  font-size: 14pt;
+}
+
+/* .list-item-container p:first-of-type, .list-header h3:first-of-type {
+  text-align: left;
+}
+
+.list-item-container p:last-of-type, .list-header h3:last-of-type {
+  text-align: right;
+} */
+
+#chores .list-item-container p:nth-of-type(2) {
+  text-decoration: underline;
+}
+
+
+/* Styling for todolist */
+input {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  background-color: transparent;
+  padding-bottom: 5px;
+  font-size: 12pt;
+}
+
+input::placeholder {
+  color: rgba(255, 253, 247, 0.6);
+}
+
+input:focus, input:active {
+  outline: none;
+}
+
+.task-input {
+  margin-left: 25px;
+  font-size: 12pt;
+  width: 300px;
+  max-width: 75%;
+}
+
+.event-input {
+  margin-left: 0;
+  margin-top: 5px;
+}
+
+.check-container {
+  padding-left: 5px;
+  padding-bottom: 15px;
+  display: flex;
+}
+
+.check-container p {
+  margin-left: 25px;
+  margin-top: 3px;
+}
+
+.round {
+  position: relative;
+}
+
+.round label {
+  border: 1px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 25px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 25px;
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 5px;
+  opacity: 0;
+  position: absolute;
+  top: 6px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+
+
+/* Styling for payment status section */
+#paid-status-section h3 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#utilities-status h3 {
+  margin-top: 20px;
+}
+
+.statuses > div > div {
+  display: flex;
+  align-items: center;
+  margin: 15px 0px;
+}
+
+.statuses .status, .list-item-container p:last-of-type {
+  border: 1px solid;
+  margin-right: 10px;
+  padding: 3px 5px;
+  font-size: 8pt;
+  width: 56px;
+  text-align: center;
+}
+
+.statuses .paid {
+  border-color: limegreen;
+  border-radius: 3px;
+  color: limegreen;
+}
+
+.statuses .unpaid, .list-item-container p:last-of-type {
+  border-color: rgb(255, 99, 132);
+  border-radius: 3px;
+  color: rgb(255, 99, 132);
+}
+
+.low {
+  border-color: limegreen !important;
+  border-radius: 3px;
+  color: limegreen !important;
+}
+
+.medium {
+  border-color: orange !important;
+  border-radius: 3px;
+  color: orange !important;
+}
+
+.list-item-container p:last-of-type {
+  /* flex-basis: 100px; */
+}
+
+/* For Chores Page */
+.contain-card {
+  margin: 15px !important;
+  border: 1px solid white;
+  border-radius: 2px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: 8px;
+}
+
+.card-list {
+  padding: 8px;
+  flex-grow: 1;
+  min-height: 100px;
+  width: 100%;
+  height: 100%;
+}
+
+.chore-list {
+  border: 1px solid white;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  background-color: rgb(255, 166, 0);
+}
+
+.flex-box {
+  display: flex;  
+  flex-wrap: wrap;
+}
+
+/* Footer styling */
+footer {
+  width: 100%;
+  height: 160px;
+  position: fixed;
+  bottom: 0;
+  z-index: -5;
+  padding: 30px;
+  background-color: #00efd1;
+  text-align: center;
+}
+
+.footer-first {
+  padding-top: 1.5rem;
+}
+
+footer * {
+  color: #1c3f55;
+}
+
+.detail {
+  margin: 0;
+}
+
+/* About page styling */
+#content {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#content h1, #content h2 {
+  margin-bottom: 20px;
+}
+
+#content p {
+  margin-bottom: 40px;
+  line-height: 1.3;
+}
+
+#about #content {
+  height: 70%;
+  overflow: scroll;
+}
+
+li {
+  font-size: 12pt;
+}
+
+/* Calendar section styling */
+.cal-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+  cursor: default;
+}
+
+#current-month {
+  width: 180px;
+  text-align: center;
+}
+
+.toggle-month img {
+  height: 30px;
+  cursor: pointer;
+}
+
+.cal-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 13px 0px;
+}
+
+.cal-row p {
+  flex-basis: 30px;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.cal-row p {
+  position: relative;
+}
+
+.fa-circle {
+  position: absolute;
+  bottom: -9px;
+  left: 11px;
+  font-size: 5pt;
+}
+
+.hidden-day, .day-label p {
+  cursor: default !important;
+}
+
+.cal-row:not(.day-label) p:hover:not(.hidden-day):not(.first-of-month):not(.utilities-due){
+  background-color: rgba(255, 253, 247, 0.6);
+}
+
+.expand-div {
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  border-top: solid 2px white;
+  background-color: rgba(255, 253, 247, 0.3);
+}
+
+.expand-div > p:not(.header-div) {
+  margin-bottom: 10px;
+}
+
+.day-expanded {
+  background-color: rgba(255, 253, 247, 0.3);
+}
+
+.fa-sort-up {
+  font-size: 18pt;
+  position: absolute;
+  bottom: -38px;
+  left: 8px;
+}
+
+.header-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.day-header {
+  font-size: 14pt;
+}
+
+#go-today {
+  background: none;
+  border: solid 1px white;
+  border-radius: 3px;
+  height: 25px;
+  width: 70px;
+  margin-top: 3px;
+  font-size: 10pt;
+}
+
+#go-today:hover {
+  background-color: rgba(255, 253, 247, 0.6);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.today {
+  border: 1px solid white;
+}
+
+.first-of-month {
+  background-color: rgba(255, 99, 132, 0.6);
+}
+
+.utilities-due {
+  background-color: rgba(149, 178, 234, 0.6);
+}
+
+.first-of-month:hover {
+  background-color: rgba(255, 99, 132, 0.4);
+}
+
+.utilities-due:hover {
+  background-color: rgba(149, 178, 234, 0.4);
+}
+
+/* Electricity cost section graph styling */
+#graph {
+  padding: 15px;
+  height: 380px;
+}
+
+#graph > div {
+  text-align: center;
+}
+
+#chart1 {
+  height: 300px;
+}
+
+#chart2 {
+  width: 250px;
+  margin:auto;
+}
+
+.toggle-btns {
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 12pt;
+  padding: 5px;
+  border: solid 1px white;
+}
+
+.toggle-btns:hover {
+  background-color: rgba(255, 253, 247, 0.6);
+}
+
+#request {
+  flex-basis: 70%;
+}
+
+
+#rent-section, #chores-section {
+  /* display: none; */
+  flex-basis: 100%;
+  height: auto;
+  min-height: 400px;
+  width: 500px;
+  max-width: 100%;
+}
+
+#rent-section {
+  margin: auto;
+  margin-top: 40px;
+}
+
+/* Styling for rent-breakdown section */
+.tenants-total {
+  display: flex;
+  align-items:center;
+  margin-bottom: 10px;
+}
+
+.tenants-total input {
+  width: 30px;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 14pt;
+  padding-bottom: 0px;
+}
+
+#chores-breakdown button {
+  display: none;
+  position: absolute;
+  bottom: 0;
+}
+
+#tenant-assign {
+  width: 300px;
+}
+
+.tenant-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.list-name {  
+  width: 300px;
+}
+
+.list-name {
+  margin-right: 40px;
+}
+
+.list-rent {
+  width: 60px;
+}
+
+.tenants-list p {
+  text-align: right; 
+}
+
+.dollar-sign {
+  display: inline;
+  margin-right: 5px;
+}
+
+#total-label {
+  width: 300px;
+  text-align: right;
+}
+
+/* Styling for chores section */
+.chores-container > div {
+  /* display: flex; */
+  justify-content: space-between;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.chores-container a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#select-tenant {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.8);
+}
+
+#select-container {
+  position: absolute;
+  background-color: lightslategray;
+  top: 30%;
+  left: 47%;
+  border: 1px solid white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Styling for screens larger than 800px in width */
+@media only screen and (min-width: 800px) {
+
+  .hamburger {
+    display: none;
+  }
+ 
+
+  #main-container:before {
+    filter: blur(20px);
+  }
+
+  main {
+    max-width: 1200px;
+    min-width: 600px;
+    margin: auto auto;
+    height: auto;
+    padding-right: 20px;
+    padding-left: 280px;
+    padding-bottom: 30px;
+  }
+
+  /* Hide top nav bar */
+  .nav-container {
+    display: none;
+  }
+  
+  .nav-container img {
+    display: none;
+  }
+
+  /* Always show left nav */
+  #left-nav {
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    display: block !important;
+    flex-basis: 250px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    /* border-right: 1px solid white; */
+    margin-right: 20px;
+    width: auto;
+    top:0;
+    background-color: #1c3f55;
+  }
+
+  .housely img {
+    display: none;
+  }
+
+  #left-and-dashboard {
+    display: flex;
+    position: relative;
+    background-color: #eaf3f9;
+  }
+
+  /* Give sections shadow and outline */
+  .main-sections, #left-nav {
+    box-shadow: 5px 3px 30px black;
+  }
+
+  #cover-section {
+    /* flex-direction: row; */
+    padding: 15px;
+  }
+
+  #cover-section > div {
+      padding: 0px 40px;
+  }
+
+  #cover-section h3 {
+      font-size: 36pt;
+      margin-top: 10px;
+      margin-bottom: 0px;
+  }
+
+  #cover-section h4 {
+      font-size: 20pt;
+      margin-top: 0px;
+      margin-bottom: 10px;
+  }
+
+  #pay-buttons {
+      /* flex-direction: column; */
+      align-items: center;
+  }
+
+  #pay-buttons button:first-of-type {
+
+  }
+
+  .sections-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      /* margin-bottom: 160px; */
+
+  }
+
+  /* Style rent breakdown section */
+  #breakdown {
+      padding: 20px;
+  }
+
+  .tenants-list button, #chores-breakdown button {
+      margin: 30px 30px;
+  }
+
+  #graph {
+      flex-basis: 100%;
+      flex-shrink: 0;
+      padding: 15px;
+  }
+
+  #todo {
+      display: block;
+  }
+
+  .main-sections, #left-nav {
+      /*background: hsla(0, 0%, 100%, .3);*/
+      box-shadow: 5px 3px 30px black;
+  }
+
+  .main-sections {
+      /* border: solid 1px white; */
+      background-color: #1c3f55;
+      border-top: none;
+      border-radius: 10px;
+      margin: 10px 0px;
+      flex-basis: 40%;
+      flex-shrink: 0;
+      flex-grow: 0.45;
+  }
+
+  /* Adjust calendar section sizing */
+  #calendar-section {
+      flex-basis: 55%;
+      padding-bottom: 0px;
+  }
+
+  #paid-status-section {
+      flex-basis: 25%;
+  }
+  .expand-section {
+    max-height: 70px;
+    overflow: hidden;
+    transition: height 0.2s ease-out;
+  }
+
+  .expand-section:hover {
+    max-height: 300px;
+    transition: max-height 0.2s ease-in;
+  }
+
+  .sub-section {
+    padding-left: 10px;
+    padding: 0px;
+    height: 40px;
+  }
+
+  .sub-section h2 {
+    font-size: 14pt;
+    padding-left: 15px;
+  }
+
+  .sub-section .left-block {
+    width: 5px;
+  }
+
+  .preferences {
+    margin-top: 70px;
+  }
+
+  /* ABOUT PAGE  */
+  #content h1 {
+    font-size: 30pt;
+    margin-bottom: 50px;
+  }
+
+  #content p {
+    font-size: 14pt;
+    margin-bottom: 40px;
+    line-height: 1.3;
+  }
+
+  #content {
+    flex-basis: 100%;
+    padding-top: 20px;
+  }
+
+  li {
+    font-size: 14pt;
+  }
+
+  footer {
+    height: 160px;
+    padding-left: 280px;
+    /* margin-left: 255px;
+    width: calc(100% - 250px); */
+  }
+}
+
+
+/* Hamburger Menu */
+.toggle-button {
+  padding-left: 1rem;
+  margin-right: 3rem;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(61, 54, 18, 0.3);
+  z-index: 100;
+}
+
+.toolbar {
+  margin-bottom: 0.5rem;
+}
+
+/* SIDE BAR */
+.side-drawer {
+  height: 100%;
+  background-image: linear-gradient(to right top, #45507f, #45507f, #45507f, #45507f, #45507f);
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  color: white;
+  top: 0;
+  left: 0;
+  width: 70%;
+  max-width: 400px;
+  z-index: 500 !important;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
+}
+
+.side-drawer ul {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+}
+
+.side-drawer li {
+  margin: 0.5rem 0;
+}
+
+.side-drawer a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.side-drawer a:hover,
+.side-drawer a:active {
+  color: #45507f;
+}
+
+@media (min-width: 769px) {
+    .side-drawer {
+        display: none;
+    }
+}
