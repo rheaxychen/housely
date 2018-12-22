@@ -7,18 +7,22 @@ This repository contains code for an interactive web app, created for the _Clien
 The site can be viewed at <https://info340a-au18.github.io/project-mouradheddaya/>
 
 ## Use Cases
+NOTE: A tenant account MUST be created _prior_ to the landlord account. And they must sign up with the _exact same_ address.
 
-1. login as a tenant -> submit a maintenance request  
-2. login as a landlord -> assign payments
-* the landlord/tenant need to set up the _exact same_ address at signup
+For both:
+-Navigate in calendar and add events, saves added events in firebase and thus persists between sessions (NOTE: does NOT sync between landlord and tenant)
+-Add todos (saves in firebase, persists through sessions. not synched between landlord/tenant)
 
-## References
+For ONLY Tenant:
+-Click "Pay rent" or "Pay utilities" to report each has been payed. This will updated status in the "Payment Status" module on dashboard.
+-Login and Submit and maintenance requests (synched between landlord and tenant)
+-Set chores for all the different tenants 
 
-1. [react-dropdown](https://www.npmjs.com/package/react-dropdown) library - Rhea
-2. [react-radio-button](https://www.npmjs.com/package/react-radio-buttons) library - Mourad
-3. [react-beautiful-dnd](https://blog.bitsrc.io/implement-better-drag-and-drop-in-your-react-app-beafc4451599) library - Xiaotong
-4. [Hamburger Menu tutorial 1](https://www.youtube.com/watch?v=e56W2T51Wg0) - Xiaotong
-5. [Hamburger Menu tutorial 2](https://www.youtube.com/watch?v=l6nmysZKHFU&t=7s) - Xiaotong
+For ONLY landlord:
+-Assign payments to be collected (synched between landlord and tenant)
+-Submit maintenance requests
+
+
 
 
 ## Dashboard:
@@ -52,6 +56,15 @@ The site can be viewed at <https://info340a-au18.github.io/project-mouradheddaya
 ## About
 
 - This is a page that describes the mission of the application and its purpose, but it is not interactive.
+
+
+## References
+
+1. [react-dropdown](https://www.npmjs.com/package/react-dropdown) library - Rhea
+2. [react-radio-button](https://www.npmjs.com/package/react-radio-buttons) library - Mourad
+3. [react-beautiful-dnd](https://blog.bitsrc.io/implement-better-drag-and-drop-in-your-react-app-beafc4451599) library - Xiaotong
+4. [Hamburger Menu tutorial 1](https://www.youtube.com/watch?v=e56W2T51Wg0) - Xiaotong
+5. [Hamburger Menu tutorial 2](https://www.youtube.com/watch?v=l6nmysZKHFU&t=7s) - Xiaotong
 
 
 ## Available Scripts
