@@ -31,7 +31,44 @@ class App extends Component {
       payments: [],
       requests: [],
       chores: [],
-      tenants: []
+      tenants: [],
+      rentTotal: 0,
+      address: "",
+      tasks: [],
+      calendar: [
+        {
+          year: 2018,
+          month: 10,
+          day: 8,
+          events: [
+            'Finish HW', 'Do my chore!'
+          ]
+        },
+        {
+          year: 2018,
+          month: 10,
+          day: 22,
+          events: [
+            `Thanksgiving`
+          ]
+        },
+        {
+          year: 2018,
+          month: 10,
+          day: 18,
+          events: [
+            `House Cleanup`
+          ]
+        },
+        {
+          year: 2018,
+          month: 11,
+          day: 25,
+          events: [
+            `Christmas`
+          ]
+        }
+      ]
     };
   }
 
@@ -65,10 +102,14 @@ class App extends Component {
               this.setState({setup: snapshot1.val().setup, 
                 role: snapshot1.val().role,
                 tenants: snapshot1.val().tenants,
+                rentTotal: snapshot1.val().rentTotal,
                 requests,
+                address: snapshot1.val().address,
                 avatar: firebaseUser.photoURL,
                 payments,
                 chores,
+                calendar: snapshot1.val().calendar,
+                tasks: snapshot1.val().tasks,
                 user: firebaseUser, 
                 associatedAccount,
                 loading: false});
@@ -88,9 +129,13 @@ class App extends Component {
             } 
             this.setState({setup: snapshot1.val().setup, 
               role: snapshot1.val().role,
+              rentTotal: snapshot1.val().rentTotal,
               tenants,
+              address: snapshot1.val().address,
               payments,
               requests,
+              calendar: snapshot1.val().calendar,
+              tasks: snapshot1.val().tasks,
               avatar: firebaseUser.photoURL,
               associatedAccount: snapshot1.val().associatedAccount,
               user: firebaseUser, 
@@ -108,10 +153,15 @@ class App extends Component {
     this.authUnSubFunction() //stop listening for auth changes
     this.currentUserData.off();
     this.associatedData.off();
-    this.usersRef.off();
+    if (this.usersRef !== undefined) {
+      this.usersRef.off();
+    }
+    if (this.otherRef !== undefined) {
+      this.otherRef.off();
+    }
   }
 
-  updateTenants = (tenants, address) => {
+  updateTenants = (tenants, address, total) => {
     firebase.database().ref('users/' + this.state.user.uid).update({setup:false, address});
     if (this.state.role === 'landlord') {
       this.usersRef = firebase.database().ref('users/');
@@ -119,17 +169,19 @@ class App extends Component {
         let userIds = Object.keys(snapshot.val());
         for (let i = 0; i < userIds.length; i++) {
           let currentId = userIds[i];
-          firebase.database().ref('users/' + currentId).on('value', (snapshot) => {
+          let otherRef = firebase.database().ref('users/' + currentId);
+          otherRef.on('value', (snapshot) => {
             if (this.state.user.uid !== currentId && snapshot.val().address === address) {
                 firebase.database().ref('users/' + currentId).update({associatedAccount: this.state.user.uid});
                 firebase.database().ref('users/' + this.state.user.uid).update({associatedAccount: currentId});
                 firebase.database().ref('users/' + this.state.user.uid).update({tenants: snapshot.val().tenants});
+                firebase.database().ref('users/' + this.state.user.uid).update({rentTotal: snapshot.val().rentTotal});
             }
           }).bind(this);
         }
       })
     }
-    firebase.database().ref('users/' + this.state.user.uid).update({tenants});
+    firebase.database().ref('users/' + this.state.user.uid).update({tenants, rentTotal: total});
     // let data = firebase.database().ref('users/' + this.state.user.uid);
     // data.on('value', (snapshot) => {
     //   let tenantKeys = Object.keys(snapshot.val());
@@ -153,7 +205,10 @@ class App extends Component {
           tenants: [],
           payments: [],
           requests: [],
-          chores: []
+          chores: [],
+          rentTotal: 0,
+          calendar: this.state.calendar,
+          tasks: ['Mow the lawn', 'Do kitchen chore', 'Pay rent']
         });
 
         this.setState({setup: true, role, avatar});
@@ -192,6 +247,9 @@ class App extends Component {
     this.setState({errorMessage:null}); //clear any old errors
 
     firebase.auth().signOut()
+    .then(() => {
+      window.location.reload();
+    })
     .catch((err) => {
       this.setState({errorMessage: err.message})
     })
@@ -221,7 +279,9 @@ class App extends Component {
     }
     this.setState({tenants});
     firebase.database().ref('users/' + this.state.user.uid).update({tenants});
-    firebase.database().ref('users/' + this.state.associatedAccount).update({tenants});
+    if (this.state.associatedAccount !== "") {
+      firebase.database().ref('users/' + this.state.associatedAccount).update({tenants});
+    }
   }
 
   handleUtilitiesPaid = () => {
@@ -234,7 +294,9 @@ class App extends Component {
     }
     this.setState({tenants});
     firebase.database().ref('users/' + this.state.user.uid).update({tenants});
-    firebase.database().ref('users/' + this.state.associatedAccount).update({tenants});
+    if (this.state.associatedAccount !== "") {
+      firebase.database().ref('users/' + this.state.associatedAccount).update({tenants});
+    }
   }
   
   handleRequestSubmit = (unit, type, description, note, img, priority) => {
@@ -251,6 +313,16 @@ class App extends Component {
     firebase.database().ref('users/' + this.state.user.uid).update({chores});
   }
 
+  handleCalendarUpdate = (calendar) => {
+    this.setState({calendar});
+    firebase.database().ref('users/' + this.state.user.uid).update({calendar});
+  }
+
+  handleTaskUpdate = (tasks) => {
+    this.setState({tasks});
+    firebase.database().ref('users/' + this.state.user.uid).update({tasks});
+  }
+
   render() {
     let content = null;
     if (!this.state.user) {
@@ -260,14 +332,16 @@ class App extends Component {
       );
     } else if (this.state.setup) {
       content = (
-        <RentBreakdown updateTenants={this.updateTenants} role={this.state.role}/>
+        <RentBreakdown displayName={this.state.user.displayName} updateTenants={this.updateTenants} role={this.state.role}/>
       );
     } else if (!this.state.setup) {
       content = (
         <div>
           <Main handleSignOut={this.handleSignOut} setChores={this.handleChores} chores={this.state.chores} tenants={this.state.tenants} handlePaymentSubmit={this.handlePaymentSubmit}
                 payments={this.state.payments} avatar={this.state.avatar} role={this.state.role} displayName={this.state.user.displayName} handleRentPaid={this.handleRentPaid}
-                handleUtilitiesPaid={this.handleUtilitiesPaid} handleRequestSubmit={this.handleRequestSubmit} requests={this.state.requests} />
+                handleUtilitiesPaid={this.handleUtilitiesPaid} handleRequestSubmit={this.handleRequestSubmit} requests={this.state.requests} 
+                total={this.state.rentTotal} address={this.state.address} calendar={this.state.calendar} onCalendarUpdate={this.handleCalendarUpdate}
+                tasks={this.state.tasks} handleTaskUpdate={this.handleTaskUpdate}/>
           <Footer />
         </div>
       );
@@ -469,12 +543,12 @@ class Main extends Component {
                 <Route exact path='/' component={() => (
                   <div className="sections-container">
                     <Cover avatar={this.props.avatar} role={this.props.role} displayName={this.props.displayName} rentPaid={this.props.handleRentPaid} utilitiesPaid={this.props.handleUtilitiesPaid} role={this.props.role}/>
-                    <Overview />
-                    <Todo />
+                    <Overview total={this.props.total} address={this.props.address}/>
+                    <Todo tasks={this.props.tasks} onTaskUpdate={this.props.handleTaskUpdate}/>
                     { this.props.role === 'tenant' &&
                     <ChoresDashboard chores={this.props.chores}/>
                     }
-                    <Calendar />
+                    <Calendar calendar={this.props.calendar} onCalendarUpdate={this.props.onCalendarUpdate}/>
                     <PaymentStatus tenants={this.props.tenants}/>
                     <CollectedPayment payments={this.props.payments}/>
                     <Maintenance requests={this.props.requests}/>

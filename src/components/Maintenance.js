@@ -9,13 +9,11 @@ export default class Maintenance extends Component {
 
 
     render() {
-        console.log(this.props.requests);
         let requestsArray = [];
         let requestsObj = this.props.requests;
         if (requestsObj === undefined) {
             requestsObj = [];
         }
-        // console.log(requestsObj);
         for (let i = 0; i < requestsObj.length; i++) {
             requestsArray.push([this.props.requests[i].type, this.props.requests[i].description, this.props.requests[i].priority]);
         }

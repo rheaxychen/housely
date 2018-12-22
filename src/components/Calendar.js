@@ -16,41 +16,12 @@ export default class Calendar extends Component {
         months: ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November",
           "December"],
-        calendar: [
-          {
-            year: 2018,
-            month: 10,
-            day: 8,
-            events: [
-              'Finish HW', 'Do my chore!'
-            ]
-          },
-          {
-            year: 2018,
-            month: 10,
-            day: 22,
-            events: [
-              `Thanksgiving`
-            ]
-          },
-          {
-            year: 2018,
-            month: 10,
-            day: 18,
-            events: [
-              `House Cleanup`
-            ]
-          },
-          {
-            year: 2018,
-            month: 11,
-            day: 25,
-            events: [
-              `Christmas`
-            ]
-          }
-        ]
+        calendar: []
       };
+    }
+
+    componentDidMount() {
+      this.setState({calendar: this.props.calendar});
     }
   
     handleKeyPress = (event) => {
@@ -112,8 +83,8 @@ export default class Calendar extends Component {
         });
         this.setState({
           addingEvent: false,
-          calendar: newList
         });
+        this.props.onCalendarUpdate(newList);
       } else {
         this.setState({
           addingEvent: false
@@ -193,8 +164,6 @@ export default class Calendar extends Component {
             classes += "hidden-day ";
           } else if (parseInt(n) === 1) {
             classes += "first-of-month ";
-          } else if (parseInt(n) === 13) {
-            classes += "utilities-due ";
           }
           // p.textContent = n;
           // p.addEventListener('click', function(elem) {

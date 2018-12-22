@@ -14,7 +14,6 @@ export default class CollectedPayment extends Component {
         if (paymentsObj === undefined) {
             paymentsObj = [];
         }
-        console.log(paymentsObj);
         for (let i = 0; i < paymentsObj.length; i++) {
             paymentsArray.push([this.props.payments[i].type, this.props.payments[i].amount, this.props.payments[i].due,
                                 this.props.payments[i].status]);

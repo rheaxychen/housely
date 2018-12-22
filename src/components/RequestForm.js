@@ -64,7 +64,7 @@ class RequestForm extends Component {
             this.props.handleRequestSubmit(this.state.unit, this.state.type, this.state.description,
                 this.state.note, this.state.img, this.state.priority);
             // this.props.history.push('/');
-        }, 5000)
+        }, 2000)
     }
 
     onSelectType = (event) => {
@@ -150,7 +150,7 @@ class RequestForm extends Component {
                             </div>
                             }
                             {this.state.status && 
-                            <p className="success">Maintenance Request Successfully!</p>
+                            <p className="success">Maintenance Request Successful!</p>
                             }
                             {!this.state.loading && !this.state.status &&
                             "Submit"

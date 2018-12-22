@@ -10,7 +10,10 @@ export default class PaymentStatus extends Component {
       let tenantProp = this.props.tenants;
       let tenantsRent = [];
       let tenantsUtilities = [];
-      for (let i = 0; i < this.props.tenants.length; i++) {
+      if (tenantProp === undefined) {
+        tenantProp = [];
+      }
+      for (let i = 0; i < tenantProp.length; i++) {
         let rent = tenantProp[i].statusRent === 'PAID' ? 'paid' : 'unpaid';
         tenantsRent.push(
           <div key={"rent" + i}>

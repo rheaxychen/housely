@@ -18,7 +18,6 @@ export default class ChoresDashboard extends Component {
         // for (let i = 0; i < requestsObj.length; i++) {
         //     requestsArray.push([this.props.requests[i].unit, this.props.requests[i].type, this.props.requests[i].priority]);
         // }
-        console.log(this.props.chores);
         let choresArray = [];
         for (let i = 0; i < this.props.chores.length; i++) {
             if (this.props.chores[i].chores !== undefined) {
@@ -31,7 +30,6 @@ export default class ChoresDashboard extends Component {
                 }
             }
         }
-        console.log(choresArray);
         return(
             <section id="chores" className="main-sections dash-section">
             <div className="home-section">

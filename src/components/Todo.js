@@ -6,8 +6,12 @@ export default class Todo extends Component {
         super();
         this.state = {
             addingTask: false,
-            tasks: ['Mow the lawn', 'Do kitchen chore', 'Pay rent!']
+            tasks: []
         };
+    }
+
+    componentDidMount() {
+        this.setState({tasks: this.props.tasks});
     }
   
     handleKeyPress = (event) => {
@@ -28,8 +32,8 @@ export default class Todo extends Component {
             newList.push(toAdd);
             this.setState({
                 addingTask: false,
-                tasks: newList
             });
+            this.props.onTaskUpdate(newList);
         } else {
             this.setState({
                 addingTask: false
@@ -38,8 +42,12 @@ export default class Todo extends Component {
     }
   
     render() {
-        let taskList = this.state.tasks.map((task) => {
-            return <Task key={task} task={task} id={this.state.tasks.indexOf(task) + 1}/>;
+        let tasks = this.state.tasks;
+        if (tasks === undefined) {
+            tasks = [];
+        }
+        let taskList = tasks.map((task) => {
+            return <Task key={task} task={task} id={tasks.indexOf(task) + 1}/>;
         });
   
       return (

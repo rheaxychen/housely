@@ -6,13 +6,14 @@ export default class RentBreakdown extends Component {
       super(props);
       this.state = {
         numberTenants: 0,
+        total: 0,
         tenants: []
       }
     }
   
     handleNameChange = (event, i) => {
       let tenants = this.state.tenants;
-      tenants[i].name = event.target.value;
+      tenants[i].name = event.target.value.trim();
       this.setState({
         tenants: tenants
       });
@@ -20,7 +21,7 @@ export default class RentBreakdown extends Component {
   
     handleRentChange = (event, i) => {
       let tenants = this.state.tenants;
-      tenants[i].rent = event.target.value;
+      tenants[i].rent = event.target.value.trim();
       this.setState({
         tenants: tenants
       });
@@ -28,7 +29,7 @@ export default class RentBreakdown extends Component {
   
     handleAddressChange = (event) => {
       let field = event.target.name;
-      let value = event.target.value;
+      let value = event.target.value.trim();
       let changes = {};
       changes[field] = value;
       this.setState(changes);
@@ -39,7 +40,11 @@ export default class RentBreakdown extends Component {
     }
   
     setTenants = () => {
-      this.props.updateTenants(this.state.tenants, this.state.property);
+      let total = 0;
+      for (let i = 0; i < this.state.tenants.length; i++) {
+       total += parseInt(this.state.tenants[i].rent);
+      }
+      this.props.updateTenants(this.state.tenants, this.state.property, total);
     }
   
     render() {
@@ -48,22 +53,38 @@ export default class RentBreakdown extends Component {
       for (let i = 0; i < num; i++) {
         let tenants = this.state.tenants;
           if (this.state.tenants[i] === undefined) {
-          tenants.push({
-            name: "",
-            rent: null,
-            statusRent: "UNPAID",
-            statusUtilities: "UNPAID"
-          });
-        }
-        list.push(
-          <div key={i} className="tenant-container">
-            <input onChange={(event) => this.handleNameChange(event, i)} value={this.state.tenants[i].name} className="list-name" type="text" placeholder="Enter Name" />
-            <div>
-              <p className="dollar-sign">$</p>
-              <input onChange={(event) => this.handleRentChange(event, i)} className="list-rent" type="text"  />
+            let setName = "";
+            if (i === 0 ){
+              setName = this.props.displayName;
+            }
+            tenants.push({
+              name: setName,
+              rent: null,
+              statusRent: "UNPAID",
+              statusUtilities: "UNPAID"
+            });
+          }
+        if ( i === 0) {
+          list.push(
+            <div key={i} className="tenant-container">
+              <input onChange={(event) => this.handleNameChange(event, i)} value={this.state.tenants[i].name} className="list-name" type="text" placeholder="Enter Name" disabled />
+              <div>
+                <p className="dollar-sign">$</p>
+                <input onChange={(event) => this.handleRentChange(event, i)} className="list-rent" type="text"  />
+              </div>
             </div>
-          </div>
-        );
+          );
+        } else {
+          list.push(
+            <div key={i} className="tenant-container">
+              <input onChange={(event) => this.handleNameChange(event, i)} value={this.state.tenants[i].name} className="list-name" type="text" placeholder="Enter Name" />
+              <div>
+                <p className="dollar-sign">$</p>
+                <input onChange={(event) => this.handleRentChange(event, i)} className="list-rent" type="text"  />
+              </div>
+            </div>
+          );
+        }
       }
       return(
         <section id="rent-section" className="main-sections">

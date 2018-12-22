@@ -29,7 +29,6 @@ export default class List extends Component {
             headers = [<h3 key={uuidv4()}>Type</h3>, <h3 key={uuidv4()}>Amount</h3>, <h3 key={uuidv4()}>Payment Due</h3>, <h3 key={uuidv4()}>Status</h3>];
         }
         let items = this.state.items.map((item) => {
-            console.log(item);
             return <ListItem key={uuidv4()} item={item} />
         });
         return (
@@ -75,7 +74,6 @@ class ListItem extends Component {
             }
             return <p className={classList} key={uuidv4()}>{value}</p>
         });
-        console.log(itemRow);
         return (
             <div className='list-item-container'>
                 {itemRow}

@@ -15,8 +15,6 @@ export default class SubmitCollectPayments extends Component {
     }
 
     componentWillUnmount() {
-        console.log(this.spinnerInterval);
-        console.log(this.statusInterval);
         clearInterval(this.statusInterval);
     }
 
@@ -46,7 +44,7 @@ export default class SubmitCollectPayments extends Component {
         this.statusInterval = setInterval(() => {
             this.props.paymentSubmitCallback(this.state.type, this.state.amount, this.state.due, "UNPAID");
             // this.props.history.push('/');
-        }, 5000)
+        }, 2000)
     }
 
     render() {
@@ -99,7 +97,7 @@ export default class SubmitCollectPayments extends Component {
                         </div>
                         }
                         {this.state.status && 
-                        <p className="success">Maintenance Request Successfully!</p>
+                        <p className="success">Request Successful!</p>
                         }
                         {!this.state.loading && !this.state.status &&
                         "Submit"

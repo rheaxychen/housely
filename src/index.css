@@ -700,6 +700,10 @@ input:focus, input:active {
   color: rgb(255, 99, 132);
 }
 
+.low, .medium, .paid {
+  height: 23px;
+}
+
 .low {
   border-color: limegreen !important;
   border-radius: 3px;

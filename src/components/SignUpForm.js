@@ -13,6 +13,10 @@ export default class SignUpForm extends Component {
         };
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     handleChange = (event) => {
         let field = event.target.name;
         let value = event.target.value;

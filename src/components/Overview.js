@@ -13,34 +13,18 @@ export default class Overview extends Component {
                   <tbody>
                   <tr>
                       <td className="col1">
-                          <i>My Chore</i>
+                          <i>Total Rent</i>
                       </td>
                       <td>
-                          Clean 2nd floor bathroom
+                         ${this.props.total}
                       </td>
                   </tr>
                   <tr>
                       <td className="col1">
-                          <i>My Rent</i>
+                          <i>Property Address</i>
                       </td>
                       <td>
-                          $650 <small>of $8500</small>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="col1">
-                          <i>My Utilities</i>
-                      </td>
-                      <td>
-                          $73 <small>of $534.21</small>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="col1">
-                          <i>My Room</i>
-                      </td>
-                      <td>
-                          Single - 2B
+                          {this.props.address}
                       </td>
                   </tr>
                   </tbody>
